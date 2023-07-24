@@ -14,7 +14,7 @@ const messagemodel=new schema({
     },
     chat:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"Chat"
+        ref:"Chat",
     }
 },
 {
