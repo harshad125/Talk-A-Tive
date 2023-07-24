@@ -10,7 +10,7 @@ import {  isLastMessage,
 
 function ScrollableChat({messages}) {
     const {user}=ChatState();
-    console.log(user)
+    //console.log(user)
   return (
     <ScrollableFeed>
       {messages &&
