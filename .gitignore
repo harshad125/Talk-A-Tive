@@ -1,3 +1,5 @@
 /backend/node_modules
 
 /frontend/chatty/node_modules
+
+/.env
