@@ -16,7 +16,7 @@ import io from 'socket.io-client'
 import Lottie from 'react-lottie'
 import animationData from '../animation/typing.json'
 import { useNavigate } from 'react-router-dom';
-const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
+const ENDPOINT = "http://localhost:5000"; 
 
 
 var socket, selectedChatCompare;
@@ -31,7 +31,7 @@ function SingleChat({ fetchAgain, setFetchAgain }) {
   const [istyping, setIsTyping] = useState(false);
   const toast = useToast();
   const { selectedChat, setSelectedChat, user, notification, setNotification } = ChatState();
-  const navigate=useNavigate();
+  // const navigate=useNavigate();
 
   const defaultOptions = {
     loop: true,
@@ -142,10 +142,10 @@ function SingleChat({ fetchAgain, setFetchAgain }) {
     }
   };
   const handleClick=()=>{
-    const newRoute = `./chats/meet/${selectedChat._id}`
+    // const newRoute = `./chats/meet/${selectedChat._id}`
 
     // Open the new window and navigate to the specified route
-    window.open(newRoute, '_blank');
+   // window.open(newRoute, '_blank');
    // navigate(`./meet/${selectedChat._id}`)
   }
   const typingHandler = (e) => {
@@ -201,7 +201,7 @@ function SingleChat({ fetchAgain, setFetchAgain }) {
               <>
                 {getSender(user.user, selectedChat.users)}
                 <ProfileModal
-                  user={getSenderFull(user, selectedChat.users)}
+                  user={getSenderFull(user.user, selectedChat.users)}
                 />
               </>
             ) : (

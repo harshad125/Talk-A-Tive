@@ -49,7 +49,7 @@ function SideDrawer() {
       chats,
       setChats,
     } = ChatState();
-    //console.log(user.token)
+    console.log("slide",user.user)
     const navigate=useNavigate();
     const logoutHandler = () => {
         localStorage.removeItem("userInfo");
