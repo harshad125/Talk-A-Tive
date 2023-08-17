@@ -2,6 +2,7 @@ import AsyncHandler from "express-async-handler"
 import Message from '../models/MessageModel'
 import Chat from '../models/ChatModel'
 import User from '../models/UsersModel'
+import {client} from '../index'
 
 export const sendmessage=AsyncHandler(async(req,res)=>{
     const { content, chatId } = req.body;
@@ -38,9 +39,10 @@ export const sendmessage=AsyncHandler(async(req,res)=>{
 
 export const allmessage=AsyncHandler(async (req,res)=>{
     try {
-        const messages = await Message.find({ chat: req.params.chatId })
-          .populate("sender", "name pic email")
-          .populate("chat");
+        const messages = await Message.find({ chat: req.params.chatId }).populate("sender", "name pic email").populate("chat");
+
+        client.set(`${req.params.chatId}`,JSON.stringify(messages));
+        client.expire(`${req.params.chatId}`,parseInt((+new Date)/1000) +30);
         res.json(messages);
       } catch (error) {
         res.status(400);

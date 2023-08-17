@@ -8,12 +8,21 @@ import messageRoutes from './Router/MessageRoutes.js';
 import { notFound,errorHandler } from './middleware/errorMiddleware.js';
 import { Socket } from 'socket.io';
 import { Server } from "socket.io";
+import redis from 'redis'
 
 dotenv.config({path:'./.env'});
 connection();
 
 const app = express()
 const port = process.env.PORT || 5001
+
+export const client = redis.createClient(6379);
+// const client=redis.createClient();
+client.connect();
+client.on('connect', () => {
+  console.log('Connected to Redis');
+});
+
 
 app.use(cors())
 

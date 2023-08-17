@@ -3,6 +3,7 @@ import User from '../models/UsersModel'
 import generatetoken from '../utility/generateToken'
 import bcrypt from 'bcryptjs'
 
+
 export const signup = asyncHandler(async (req, res) => {
     const { name, email, password, pic } = req.body;
     if (!name || !email || !password) {
@@ -47,6 +48,7 @@ export const login = asyncHandler(async (req, res) => {
     if (!passcom) {
         return res.status(400).json({ error: "enter valid password" });
     }
+
     res.status(200).json({user, token: generatetoken(user._id) })
 })
 
